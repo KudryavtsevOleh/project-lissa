@@ -6,13 +6,13 @@ import java.util.List;
 
 /**
  * Every implementation of Storage should allow save, update, delete and retrieve entities
- * {@link com.geekhub.lesson9_JDBC.objects.Entity}.
+ * {@link com.@link com.lissa.objects.Entity}.
  *
  */
 public interface Storage {
 
     /**
-     * Retrieves {@link com.geekhub.lesson9_JDBC.objects.Entity} from storage by its identifier.
+     * Retrieves {@link com.lissa.objects.Entity} from storage by its identifier.
      * @param clazz type of object that should be retrieved from storage.
      * @param id identifier of that object.
      * @param <T> type of object that will be retrieved.
@@ -22,7 +22,7 @@ public interface Storage {
     <T extends Entity> T get(Class<T> clazz, Integer id) throws Exception;
 
     /**
-     * Retrieves all {@link com.geekhub.lesson9_JDBC.objects.Entity} from storage.
+     * Retrieves all {@link com.@link com.lissa.objects.Entity} from storage.
      * @param clazz type of objects that needs to be retrieved.
      * @param <T>
      * @return list of objects of specified type or empty list if storage does not contains any object of that type.
@@ -40,7 +40,7 @@ public interface Storage {
     <T extends Entity> boolean delete(T entity) throws Exception;
 
     /**
-     * If {@link com.geekhub.lesson9_JDBC.objects.Entity} does not exists in storage yet it will be created, otherwise
+     * If {@link com.@link com.lissa.objects.Entity} does not exists in storage yet it will be created, otherwise
      * it will be updated.
      * @param entity that will be stored in storage.
      * @param <T>

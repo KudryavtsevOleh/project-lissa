@@ -6,14 +6,8 @@ import java.lang.reflect.Field;
 import java.sql.*;
 import java.util.*;
 
-/**
- * Implementation of {@link com.geekhub.lesson9_JDBC.storage.Storage} that uses database as a storage for objects.
- * It uses simple object type names to define target table to save the object.
- * It uses reflection to access objects fields and retrieve data to map to database tables.
- * As an identifier it uses field id of {@link com.geekhub.lesson9_JDBC.objects.Entity} class.
- * Could be created only with {@link java.sql.Connection} specified.
- */
 public class DatabaseStorage implements Storage {
+
     private Connection connection;
 
     public DatabaseStorage(Connection connection) {
@@ -22,7 +16,6 @@ public class DatabaseStorage implements Storage {
 
     @Override
     public <T extends Entity> T get(Class<T> clazz, Integer id) throws Exception {
-        //this method is fully implemented, no need to do anything, it's just an example
         String sql = "SELECT * FROM " + clazz.getSimpleName() + " WHERE id = " + id;
         try(Statement statement = connection.createStatement()) {
             List<T> result = extractResult(clazz, statement.executeQuery(sql));
@@ -32,7 +25,6 @@ public class DatabaseStorage implements Storage {
 
     @Override
     public <T extends Entity> List<T> list(Class<T> clazz) throws Exception {
-        //implement me according to interface by using extractResult method
         String sql = "SELECT * FROM " + clazz.getSimpleName();
         try (Statement statement = connection.createStatement()) {
             List<T> list = extractResult(clazz, statement.executeQuery(sql));
@@ -48,7 +40,6 @@ public class DatabaseStorage implements Storage {
 
     @Override
     public <T extends Entity> boolean delete(T entity) throws Exception {
-        //implement me
             try (Statement statement = connection.createStatement()) {
                 statement.executeUpdate("DELETE FROM " + entity.getClass().getSimpleName() + " WHERE id=" + entity.getId());
                 return true;
@@ -96,12 +87,9 @@ public class DatabaseStorage implements Storage {
                 statement.executeUpdate(sql);
             }
         }
-        //implement me, need to save/update object and update it with new id if it's a creation
     }
 
-    //converts object to map, could be helpful in save method
     private <T extends Entity> Map<String, Object> prepareEntity(T entity) throws Exception {
-        //implement me
         Map<String, Object> map = new HashMap<>();
         String fieldName = "";
         String fieldValue = "";
@@ -123,9 +111,7 @@ public class DatabaseStorage implements Storage {
         return map;
     }
 
-    //creates list of new instances of clazz by using data from resultset
     private <T extends Entity> List<T> extractResult(Class<T> clazz, ResultSet resultset) throws Exception {
-        //implement me
         List<T> classInstances = new ArrayList<>();
         Field[] fields = clazz.getDeclaredFields();
         int listElement = 0;
