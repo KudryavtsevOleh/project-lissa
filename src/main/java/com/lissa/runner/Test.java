@@ -1,4 +1,4 @@
-package com.lissa;
+package com.lissa.runner;
 
 import com.lissa.objects.Cat;
 import com.lissa.objects.user;
