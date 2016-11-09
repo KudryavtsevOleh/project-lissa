@@ -1,6 +1,6 @@
 import org.junit.Test;
 
-public class SimpleTest {
+public class DbTest {
 
     @Test
     public void firstTest() {
