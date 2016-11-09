@@ -1,6 +1,6 @@
-package com.geekhub.lesson9_JDBC.storage;
+package com.lissa.storage;
 
-import com.geekhub.lesson9_JDBC.objects.Entity;
+import com.lissa.objects.Entity;
 
 import java.util.List;
 

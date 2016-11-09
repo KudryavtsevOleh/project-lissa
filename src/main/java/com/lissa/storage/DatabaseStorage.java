@@ -1,7 +1,7 @@
-package com.geekhub.lesson9_JDBC.storage;
+package com.lissa.storage;
 
-import com.geekhub.lesson9_JDBC.objects.Entity;
-import com.geekhub.lesson9_JDBC.objects.Ignore;
+import com.lissa.objects.Entity;
+import com.lissa.objects.Ignore;
 import java.lang.reflect.Field;
 import java.sql.*;
 import java.util.*;

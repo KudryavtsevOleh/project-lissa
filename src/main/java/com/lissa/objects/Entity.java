@@ -1,4 +1,4 @@
-package com.geekhub.lesson9_JDBC.objects;
+package com.lissa.objects;
 
 /**
  * Base class for all objects that could be stored with any {@link com.geekhub.lesson9_JDBC.storage.Storage} implementation.

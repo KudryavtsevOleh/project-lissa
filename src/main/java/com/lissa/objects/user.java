@@ -1,4 +1,4 @@
-package com.geekhub.lesson9_JDBC.objects;
+package com.lissa.objects;
 
 import java.util.Date;
 

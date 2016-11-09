@@ -1,9 +1,10 @@
-package com.geekhub.lesson9_JDBC;
+package com.lissa;
 
-import com.geekhub.lesson9_JDBC.objects.cat;
-import com.geekhub.lesson9_JDBC.objects.user;
-import com.geekhub.lesson9_JDBC.storage.DatabaseStorage;
-import com.geekhub.lesson9_JDBC.storage.Storage;
+import com.lissa.objects.Cat;
+import com.lissa.objects.user;
+import com.lissa.storage.DatabaseStorage;
+import com.lissa.storage.Storage;
+
 import java.sql.Connection;
 import java.sql.DriverManager;
 import java.util.List;
@@ -13,22 +14,22 @@ public class Test {
         Connection connection = createConnection("root", "1995", "geekdb");
 
         Storage storage = new DatabaseStorage(connection);
-        List<cat> cats = storage.list(cat.class);
-        for (cat cat : cats) {
-            storage.delete(cat);
+        List<Cat> Cats = storage.list(Cat.class);
+        for (Cat Cat : Cats) {
+            storage.delete(Cat);
         }
-        cats = storage.list(cat.class);
-        if (!cats.isEmpty()) throw new Exception("Cats should not be in database! ");
+        Cats = storage.list(Cat.class);
+        if (!Cats.isEmpty()) throw new Exception("Cats should not be in database! ");
 
         for(int i = 1; i <= 20; i++) {
-            cat cat = new cat();
-            cat.setName("cat" + i);
-            cat.setAge(i);
-            storage.save(cat);
+            Cat Cat = new Cat();
+            Cat.setName("Cat" + i);
+            Cat.setAge(i);
+            storage.save(Cat);
         }
 
-        cats = storage.list(cat.class);
-        if (cats.size() != 20) throw new Exception("Number of cats in storage should be 20!");
+        Cats = storage.list(Cat.class);
+        if (Cats.size() != 20) throw new Exception("Number of Cats in storage should be 20!");
 
         user user = new user();
         user.setAdmin(true);
