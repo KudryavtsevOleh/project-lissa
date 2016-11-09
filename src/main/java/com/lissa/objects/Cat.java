@@ -1,6 +1,6 @@
-package com.geekhub.lesson9_JDBC.objects;
+package com.lissa.objects;
 
-public class cat extends Entity {
+public class Cat extends Entity {
 
     private String name;
     private int age;
