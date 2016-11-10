@@ -1,7 +1,7 @@
 package com.lissa.storage;
 
 import com.lissa.objects.Entity;
-import com.lissa.objects.Ignore;
+import com.lissa.utils.validation.Ignore;
 import java.lang.reflect.Field;
 import java.sql.*;
 import java.util.*;

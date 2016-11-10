@@ -1,5 +1,6 @@
 package com.lissa.configs;
 
+import com.lissa.bean.DbPropertyBean;
 import com.lissa.utils.Queries;
 import com.lissa.utils.enums.DbTypes;
 import com.lissa.utils.exceptions.InvalidDbTypeException;
@@ -16,16 +17,9 @@ import java.util.logging.Level;
 @Log
 public class MySQLConfig {
 
-    @NotEmpty
-    private String dbName = "lissa_test";
-    @NotEmpty
-    private String userName = "root";
-    @NotEmpty
-    private String password = "1995";
-
-    public Connection createConnection() {
+    public Connection createConnection(DbPropertyBean bean) {
         checkConnector();
-        Connection connection = getMysqlConnection();
+        Connection connection = getMysqlConnection(bean);
         return connection;
     }
 
@@ -37,14 +31,14 @@ public class MySQLConfig {
         }
     }
 
-    private Connection getMysqlConnection() {
+    private Connection getMysqlConnection(DbPropertyBean bean) {
         Connection connection;
         try {
-            connection = DriverManager.getConnection(String.format(Queries.MYSQL_CONNECTION_URL, this.dbName, this.userName, this.password));
+            connection = DriverManager.getConnection(String.format(Queries.MYSQL_CONNECTION_URL, bean.getDbName(), bean.getUserName(), bean.getPassword()));
         } catch (SQLException e) {
-            createDatabase();
+            createDatabase(bean);
             try {
-                connection = DriverManager.getConnection(String.format(Queries.MYSQL_CONNECTION_URL, this.dbName, this.userName, this.password));
+                connection = DriverManager.getConnection(String.format(Queries.MYSQL_CONNECTION_URL, bean.getDbName(), bean.getUserName(), bean.getPassword()));
             } catch (SQLException e1) {
                 e1.printStackTrace();
                 connection = null;
@@ -53,12 +47,12 @@ public class MySQLConfig {
         return connection;
     }
 
-    private void createDatabase() {
+    private void createDatabase(DbPropertyBean bean) {
         try(
-                Connection connection = DriverManager.getConnection(Queries.MYSQL_PART_CONNECTION_URL, this.userName, this.password);
+                Connection connection = DriverManager.getConnection(Queries.MYSQL_PART_CONNECTION_URL, bean.getUserName(), bean.getPassword());
                 Statement statement = connection.createStatement()
                 )  {
-            statement.execute(String.format(Queries.CREATE_DATABASE_QUERY, this.dbName));
+            statement.execute(String.format(Queries.CREATE_DATABASE_QUERY, bean.getDbName()));
         } catch (SQLException e) {
             log.log(Level.WARNING, e.getMessage());
             System.exit(0);

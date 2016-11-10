@@ -1,5 +1,7 @@
 package com.lissa.objects;
 
+import com.lissa.utils.validation.Ignore;
+
 import java.util.Date;
 
 public class user extends Entity {
