@@ -1,4 +1,4 @@
-package com.lissa.objects;
+package com.lissa.utils.validation;
 
 import java.lang.annotation.ElementType;
 import java.lang.annotation.Retention;
