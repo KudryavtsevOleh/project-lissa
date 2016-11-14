@@ -21,7 +21,7 @@ public class DbTest {
     @Test
     public void createDbTest() {
         assert Objects.equals("mysql", bean.getDbType());
-        assert Objects.equals("lissa_db", bean.getDbName());
+        assert Objects.equals("lissa_db_test", bean.getDbName());
         assert Objects.equals("root", bean.getUserName());
         assert Objects.equals("1995", bean.getPassword());
         assert Objects.equals("create", bean.getCreatingStrategy());

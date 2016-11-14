@@ -1,6 +1,7 @@
 package com.lissa.configs;
 
 import com.lissa.bean.DbPropertyBean;
+import com.lissa.utils.Messages;
 import com.lissa.utils.Queries;
 import com.lissa.utils.enums.DbTypes;
 import com.lissa.utils.exceptions.InvalidDbTypeException;
@@ -36,27 +37,10 @@ public class MySQLConfig {
         try {
             connection = DriverManager.getConnection(String.format(Queries.MYSQL_CONNECTION_URL, bean.getDbName(), bean.getUserName(), bean.getPassword()));
         } catch (SQLException e) {
-            createDatabase(bean);
-            try {
-                connection = DriverManager.getConnection(String.format(Queries.MYSQL_CONNECTION_URL, bean.getDbName(), bean.getUserName(), bean.getPassword()));
-            } catch (SQLException e1) {
-                e1.printStackTrace();
-                connection = null;
-            }
+            log.log(Level.WARNING, String.format(Messages.ERROR_CREATING_DB_CONNECTION, e.getMessage()));
+            connection = null;
         }
         return connection;
-    }
-
-    private void createDatabase(DbPropertyBean bean) {
-        try(
-                Connection connection = DriverManager.getConnection(Queries.MYSQL_PART_CONNECTION_URL, bean.getUserName(), bean.getPassword());
-                Statement statement = connection.createStatement()
-                )  {
-            statement.execute(String.format(Queries.CREATE_DATABASE_QUERY, bean.getDbName()));
-        } catch (SQLException e) {
-            log.log(Level.WARNING, e.getMessage());
-            System.exit(0);
-        }
     }
 
 }
