@@ -13,15 +13,17 @@ import java.sql.Connection;
 import java.sql.DriverManager;
 import java.sql.SQLException;
 import java.sql.Statement;
+import java.util.Optional;
 import java.util.logging.Level;
 
 @Log
-public class MySQLConfig {
+public class MySQLConfig implements DbConfig<Connection> {
 
-    public Connection createConnection(DbPropertyBean bean) {
+    @Override
+    public Optional<Connection> createConnection(DbPropertyBean bean) {
         checkConnector();
         Connection connection = getMysqlConnection(bean);
-        return connection;
+        return Optional.of(connection);
     }
 
     private void checkConnector() {

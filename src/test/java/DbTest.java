@@ -6,6 +6,7 @@ import org.junit.Test;
 
 import java.sql.Connection;
 import java.util.Objects;
+import java.util.Optional;
 
 public class DbTest {
 
@@ -25,8 +26,8 @@ public class DbTest {
         assert Objects.equals("root", bean.getUserName());
         assert Objects.equals("1995", bean.getPassword());
         assert Objects.equals("create", bean.getCreatingStrategy());
-        Connection connection = config.createConnection(bean);
-        assert connection != null;
+        Optional<Connection> connection = config.createConnection(bean);
+        assert connection.get() != null;
     }
 
 }

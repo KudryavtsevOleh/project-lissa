@@ -7,4 +7,6 @@ public class Messages {
 
     public static final String INVALID_DB_TYPE = "Invalid database type: ";
 
+    public static final String CONNECTION_EMPTY = "Database connection cannot be empty";
+
 }

@@ -6,8 +6,8 @@ import java.lang.annotation.RetentionPolicy;
 import java.lang.annotation.Target;
 
 /**
- * This annotation is used by any {@link com.geekhub.lesson9_JDBC.storage.Storage} implementation to identify fields
- * of {@link com.geekhub.lesson9_JDBC.objects.Entity} that need to be avoided from being stored
+ * This annotation is used by any {@link com.lissa.storage.Storage} implementation to identify fields
+ * of {@link com.lissa.objects.Entity} that need to be avoided from being stored
  */
 @Retention(RetentionPolicy.RUNTIME)
 @Target(ElementType.FIELD)

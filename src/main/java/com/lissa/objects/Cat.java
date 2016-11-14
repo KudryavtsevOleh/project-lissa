@@ -1,7 +1,12 @@
 package com.lissa.objects;
 
+import com.lissa.utils.annotations.Column;
+import com.lissa.utils.annotations.Table;
+
+@Table
 public class Cat extends Entity {
 
+    @Column(name = "NAME")
     private String name;
     private int age;
 
