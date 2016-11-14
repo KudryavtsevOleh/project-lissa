@@ -10,6 +10,7 @@ import com.lissa.utils.annotations.Table;
 import com.lissa.utils.enums.DbTypes;
 import com.lissa.utils.exceptions.EmptyConnectionException;
 import com.lissa.utils.exceptions.InvalidDbTypeException;
+import com.lissa.utils.validation.Ignore;
 import org.reflections.Reflections;
 import org.apache.commons.lang3.*;
 
@@ -56,22 +57,18 @@ public class Configurer {
             getFieldsNames(t, tableMeta);
             tablesMeta.add(tableMeta);
         });
-
-        //TODO:remove this
-        tablesMeta.forEach(m -> System.out.println(m.getTableName() + " - " + m.getColumns()));
-
         return tablesMeta;
     }
 
     private static void getFieldsNames(Class<?> t, TableBean tableMeta) {
         List<Field> fields = Arrays.asList(t.getDeclaredFields());
         fields.stream()
-                .filter(f -> f.isAnnotationPresent(Column.class))
+                .filter(f -> f.isAnnotationPresent(Column.class) && !f.isAnnotationPresent(Ignore.class))
                 .forEach(f -> {
                     f.setAccessible(true);
                     Column annotation = f.getAnnotation(Column.class);
                     String fieldName = StringUtils.isNotEmpty(annotation.name()) ? annotation.name() : f.getName();
-                    String typeName = f.getType().getName();
+                    String typeName = f.getType().getSimpleName();
                     tableMeta.getColumns().add(new ColumnBean(fieldName, typeName));
                     f.setAccessible(false);
                 });
@@ -79,7 +76,7 @@ public class Configurer {
 
     private static void getTableName(Class<?> t, TableBean tableMeta) {
         Table annotation = t.getAnnotation(Table.class);
-        String tableName = StringUtils.isNotEmpty(annotation.name()) ? annotation.name() : t.getName();
+        String tableName = StringUtils.isNotEmpty(annotation.name()) ? annotation.name() : t.getSimpleName();
         tableMeta.setTableName(tableName);
     }
 

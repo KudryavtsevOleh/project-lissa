@@ -1,13 +1,20 @@
 package com.lissa.objects;
 
+import com.lissa.utils.annotations.Column;
+import com.lissa.utils.annotations.Table;
 import com.lissa.utils.validation.Ignore;
 
 import java.util.Date;
 
+@Table(name = "User")
 public class user extends Entity {
+    @Column
     private String name;
+    @Column
     private Boolean admin;
+    @Column
     private Integer age;
+    @Column
     private Double balance;
     @Ignore
     private Date creationDate;
