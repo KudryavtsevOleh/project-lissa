@@ -1,12 +1,12 @@
 package com.lissa.objects;
 
 /**
- * Base class for all objects that could be stored with any {@link com.geekhub.lesson9_JDBC.storage.Storage} implementation.
+ * Base class for all objects that could be stored with any {@link com.lissa.storage.Storage} implementation.
  */
 public abstract class Entity {
 
     /**
-     * Identifier of the entity. Should be updated only by {@link com.geekhub.lesson9_JDBC.storage.Storage} implementation.
+     * Identifier of the entity. Should be updated only by {@link com.lissa.storage.Storage} implementation.
      */
     private Integer id;
 
