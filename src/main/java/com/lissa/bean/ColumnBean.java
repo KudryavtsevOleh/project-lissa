@@ -1,14 +1,22 @@
 package com.lissa.bean;
 
-import lombok.AllArgsConstructor;
-import lombok.Getter;
-import lombok.ToString;
+import com.sun.istack.internal.NotNull;
+import lombok.*;
 
 @Getter
-@AllArgsConstructor
 public class ColumnBean {
 
+    @Setter
+    private boolean isPrimaryKey = false;
+    @Setter
+    private boolean isAutoIncrement;
+    @NotNull
     private String name;
+    @NotNull
     private String type;
 
+    public ColumnBean(String name, String type) {
+        this.name = name;
+        this.type = type;
+    }
 }

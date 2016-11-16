@@ -1,10 +1,12 @@
 package com.lissa.configs;
 
 import com.lissa.bean.DbPropertyBean;
+import com.lissa.utils.exceptions.EmptyConnectionException;
+
 import java.util.Optional;
 
-public interface DbConfig<T> {
+public interface DbConfig {
 
-    Optional<T> createConnection(DbPropertyBean bean);
+    void configure(DbPropertyBean bean) throws EmptyConnectionException;
 
 }
